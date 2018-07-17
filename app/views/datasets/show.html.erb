@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @dataset.title %>
+</p>
+
+<%= link_to 'Edit', "/datasets/#{@dataset.key}/edit" %> |
+<%= link_to 'Back', datasets_path %>

@@ -1,0 +1,5 @@
+development:
+  :key_prefix: local
+
+production:
+  :key_prefix: pilot
