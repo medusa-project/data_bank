@@ -10,10 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_17_144315) do
+ActiveRecord::Schema.define(version: 2018_07_19_150514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "datafiles", force: :cascade do |t|
+    t.bigint "dataset_id"
+    t.string "web_id"
+    t.string "storage_root"
+    t.string "storage_key"
+    t.string "storage_prefix"
+    t.string "filename"
+    t.bigint "size"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dataset_id"], name: "index_datafiles_on_dataset_id"
+  end
 
   create_table "datasets", force: :cascade do |t|
     t.string "key", null: false
@@ -23,4 +36,5 @@ ActiveRecord::Schema.define(version: 2018_07_17_144315) do
     t.index ["key"], name: "index_datasets_on_key", unique: true
   end
 
+  add_foreign_key "datafiles", "datasets"
 end

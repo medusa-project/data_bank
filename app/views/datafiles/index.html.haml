@@ -1,0 +1,28 @@
+%p#notice= notice
+%h1 Datafiles
+%table
+  %thead
+    %tr
+      %th Dataset
+      %th Web
+      %th Storage root
+      %th Storage key
+      %th Storage prefix
+      %th Filename
+      %th Size
+      %th{:colspan => "3"}
+  %tbody
+    - @datafiles.each do |datafile|
+      %tr
+        %td= datafile.dataset
+        %td= datafile.web_id
+        %td= datafile.storage_root
+        %td= datafile.storage_key
+        %td= datafile.storage_prefix
+        %td= datafile.filename
+        %td= datafile.size
+        %td= link_to 'Show', datafile
+        %td= link_to 'Edit', edit_datafile_path(datafile)
+        %td= link_to 'Destroy', datafile, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Datafile', new_datafile_path

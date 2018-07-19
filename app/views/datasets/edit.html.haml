@@ -1,0 +1,5 @@
+%h1 Editing Dataset
+= render 'form', dataset: @dataset
+= link_to 'Show', "/datasets/#{@dataset.key}"
+|
+= link_to 'Back', datasets_path

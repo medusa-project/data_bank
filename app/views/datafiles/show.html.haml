@@ -1,0 +1,25 @@
+%p#notice= notice
+%p
+  %strong Dataset:
+  = @datafile.dataset
+%p
+  %strong Web:
+  = @datafile.web_id
+%p
+  %strong Storage root:
+  = @datafile.storage_root
+%p
+  %strong Storage key:
+  = @datafile.storage_key
+%p
+  %strong Storage prefix:
+  = @datafile.storage_prefix
+%p
+  %strong Filename:
+  = @datafile.filename
+%p
+  %strong Size:
+  = @datafile.size
+= link_to 'Edit', edit_datafile_path(@datafile)
+|
+= link_to 'Back', datafiles_path

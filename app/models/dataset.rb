@@ -1,5 +1,7 @@
 class Dataset < ApplicationRecord
 
+  has_many :datafiles, dependent: :destroy
+
   before_create :set_key
 
   def set_key
