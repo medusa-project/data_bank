@@ -46,10 +46,14 @@ class DatafilesController < ApplicationController
       save_path = File.join("#{IDB_CONFIG[:storage_root]}", "#{@datafile.storage_key}" )
     end
 
+    @datafile.filename = uploaded_io.original_filename
+    @datafile.size = uploaded_io.size
+
     # Moving the file to some safe place; as tmp files will be flushed timely
     File.open(save_path, 'wb') do |file|
       file.write(uploaded_io.read)
     end
+
 
     respond_to do |format|
       if @datafile.save
