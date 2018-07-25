@@ -1,0 +1,21 @@
+key_prefix: pilot
+
+tmpdir: /Users/mfall3/Projects/data_bank/tmp
+
+storage:
+  - :name: draft
+    :type: s3
+    :bucket: fallaw-databank
+    :aws_access_key_id: <%= Rails.application.credentials[Rails.env.to_sym][:aws][:access_key_id] %>
+    :aws_secret_access_key: <%= Rails.application.credentials[Rails.env.to_sym][:aws][:secret_access_key] %>
+    :region: <%= Rails.application.credentials[Rails.env.to_sym][:aws][:region] %>
+    :prefix:
+
+  - :name: medusa
+    :type: s3
+    :bucket: fallaw-mock-medusa
+    :aws_access_key_id: <%= Rails.application.credentials[Rails.env.to_sym][:aws][:access_key_id] %>
+    :aws_secret_access_key: <%= Rails.application.credentials[Rails.env.to_sym][:aws][:secret_access_key] %>
+    :region: <%= Rails.application.credentials[Rails.env.to_sym][:aws][:region] %>
+    :prefix:
+

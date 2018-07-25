@@ -8,6 +8,9 @@ Bundler.require(*Rails.groups)
 
 module DataBank
   class Application < Rails::Application
+
+    attr_accessor :storage_manager
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
@@ -17,3 +20,6 @@ module DataBank
     # the framework and any gems in your application.
   end
 end
+
+#establish a short cut for the Application object
+Application = DataBank::Application

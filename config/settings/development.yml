@@ -1,0 +1,10 @@
+key_prefix: local
+tmpdir: /Users/mfall3/Projects/data_bank/tmp
+storage:
+  - :name: draft
+    :type: filesystem
+    :path: /Users/mfall3/Projects/data_bank/uploads
+  - :name: medusa
+    :type: filesystem
+    :path: /Users/mfall3/Projects/data_bank/medusa/123
+

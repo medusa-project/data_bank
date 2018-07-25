@@ -11,3 +11,8 @@
   %body
     .container-fluid
       = yield
+
+  -if @dataset
+    =javascript_tag do
+      window.dataset_key = "#{j @dataset.key}";
+      window.dataset_id = "#{j @dataset.id.to_s}";

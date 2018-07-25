@@ -21,6 +21,12 @@ gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
+# Use in-house storage gem to manage flexible storage on filesystems and s3 buckets
+gem 'medusa_storage', git: 'https://github.com/medusa-project/medusa_storage.git', branch: 'master'
+
+# Use config gem to manage multi-environment yaml settings
+gem 'config'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks

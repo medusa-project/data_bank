@@ -26,34 +26,22 @@ class DatafilesController < ApplicationController
   # POST /datafiles
   # POST /datafiles.json
   def create
+
     @datafile = Datafile.new(dataset_id: params[:datafile][:dataset_id])
     uploaded_io = params[:datafile][:upload]
 
     @datafile.web_id ||= @datafile.generate_web_id
 
-    save_path = nil
-
-    @datafile.storage_root = "#{IDB_CONFIG[:storage_root]}"
-    @datafile.storage_prefix = "#{IDB_CONFIG[:storage_root]}"
-    @datafile.storage_key = File.join(@datafile.web_id, uploaded_io.original_filename)
-
-    if IDB_CONFIG[:storage_prefix]
-      @datafile.storage_prefix = "#{IDB_CONFIG[:storage_prefix]}"
-      FileUtils::mkdir_p File.join("#{IDB_CONFIG[:storage_root]}", "#{IDB_CONFIG[:storage_prefix]}", @datafile.web_id)
-      save_path = File.join("#{IDB_CONFIG[:storage_root]}", "#{IDB_CONFIG[:storage_prefix]}", "#{@datafile.storage_key}")
-    else
-      FileUtils::mkdir_p File.join("#{IDB_CONFIG[:storage_root]}", @datafile.web_id)
-      save_path = File.join("#{IDB_CONFIG[:storage_root]}", "#{@datafile.storage_key}" )
-    end
-
+    @datafile.storage_root = Application.storage_manager.draft_root
     @datafile.filename = uploaded_io.original_filename
+    @datafile.storage_key = File.join(@datafile.web_id, @datafile.filename)
     @datafile.size = uploaded_io.size
 
     # Moving the file to some safe place; as tmp files will be flushed timely
-    File.open(save_path, 'wb') do |file|
+
+    Application.storage_manager.draft_root.with_output_io(@datafile.storage_key) do |io|
       file.write(uploaded_io.read)
     end
-
 
     respond_to do |format|
       if @datafile.save
@@ -98,6 +86,6 @@ class DatafilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def datafile_params
-      params.require(:datafile).permit(:dataset_id, :web_id, :upload, 'upload')
+      params.require(:datafile).permit(:dataset_id, :web_id, :upload, 'upload', :dataset_key, 'datafiles', 'datafiles'['upload'], 'datafiles'['dataset_id'])
     end
 end

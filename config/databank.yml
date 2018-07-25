@@ -1,9 +1,0 @@
-development:
-  :key_prefix: local
-  :storage_type: filesystem
-  :storage_root: /Users/mfall3/Projects/data_bank/uploads
-
-production:
-  :key_prefix: pilot
-  :storage_type: s3
-  :storage_root: TBD
