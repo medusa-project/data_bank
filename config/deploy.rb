@@ -3,6 +3,7 @@ lock "~> 3.11.0"
 
 set :application, "data_bank"
 set :repo_url, 'https://github.com/medusa-project/data_bank.git'
+set :rvm_ruby_version, '2.5.1@data_bank'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
