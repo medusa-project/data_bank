@@ -27,11 +27,8 @@ class Datafile < ApplicationRecord
 
   def remove_draft_bytestream
 
-    # method only valid for drafts
-    if self.storage_root == Application.storage_manager.draft_root
-      Application.storage_manager.draft_root.delete_content(self.storage_key)
-      Application.storage_manager.draft_root.delete_tree(self.web_id)
-    end
+    Application.storage_manager.draft_root.delete_content(self.storage_key)
+    Application.storage_manager.draft_root.delete_tree(self.web_id)
 
   end
 

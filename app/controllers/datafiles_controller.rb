@@ -38,10 +38,7 @@ class DatafilesController < ApplicationController
     @datafile.size = uploaded_io.size
 
     # Moving the file to some safe place; as tmp files will be flushed timely
-
-    Application.storage_manager.draft_root.with_output_io(@datafile.storage_key) do |io|
-      file.write(uploaded_io.read)
-    end
+    Application.storage_manager.draft_root.copy_io_to(@datafile.storage_key, uploaded_io, nil, uploaded_io.size)
 
     respond_to do |format|
       if @datafile.save
