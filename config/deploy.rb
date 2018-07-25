@@ -21,7 +21,7 @@ set :repo_url, 'https://github.com/medusa-project/data_bank.git'
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/masterk.key"
+append :linked_files, "config/master.key"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
